@@ -31,4 +31,10 @@ app.use('/api/tasks', require('./routes/taskRoutes'));
 
 app.use(errorHandler);
 
-app.listen(port, () => console.log(`Server started on port ${port}`));
+// Conditionally listen for local development
+if (!process.env.VERCEL) {
+  app.listen(port, () => console.log(`Server started on port ${port}`));
+}
+
+// Export the app for Vercel Serverless Functions
+module.exports = app;
