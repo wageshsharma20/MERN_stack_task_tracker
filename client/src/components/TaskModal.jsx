@@ -49,58 +49,58 @@ const TaskModal = ({ isOpen, onClose, onSubmit, initialData }) => {
   };
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-900/50 backdrop-blur-sm">
-      <div className="bg-white rounded-2xl w-full max-w-md overflow-hidden shadow-2xl">
-        <div className="px-6 py-4 border-b border-slate-100 flex justify-between items-center bg-slate-50/50">
-          <h2 className="text-lg font-semibold text-slate-900">
-            {initialData ? 'Edit Task' : 'Create Task'}
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-white/90 backdrop-blur-md">
+      <div className="bg-white w-full max-w-2xl overflow-hidden border-2 border-gray-100 p-8 shadow-2xl relative">
+        <button onClick={onClose} className="absolute right-8 top-8 text-gray-400 hover:text-brand-red transition-colors p-2">
+          <X className="h-6 w-6" />
+        </button>
+        <div className="mb-12">
+          <h2 className="text-4xl font-black text-gray-900 tracking-tight">
+            {initialData ? 'Edit Task' : 'Create Task'}<span className="text-brand-red">.</span>
           </h2>
-          <button onClick={onClose} className="text-slate-400 hover:text-slate-600 transition-colors p-1 rounded-lg hover:bg-slate-100">
-            <X className="h-5 w-5" />
-          </button>
         </div>
         
-        <form onSubmit={handleSubmit} className="p-6">
-          <div className="space-y-4">
+        <form onSubmit={handleSubmit} className="space-y-8">
+          <div className="space-y-6">
             <div>
-              <label className="block text-sm font-medium text-slate-700 mb-1">Title</label>
+              <label className="block text-sm font-semibold text-gray-900 mb-2">Title</label>
               <input
                 type="text"
-                className={`w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500 transition-colors ${errors.title ? 'border-rose-500 bg-rose-50/50' : 'border-slate-300'}`}
+                className={`w-full px-0 py-3 border-b-2 bg-transparent focus:outline-none focus:ring-0 transition-colors text-lg placeholder-gray-400 ${errors.title ? 'border-brand-red' : 'border-gray-200 focus:border-brand-red'}`}
                 value={formData.title}
                 onChange={(e) => setFormData({ ...formData, title: e.target.value })}
                 placeholder="Task title"
               />
-              {errors.title && <p className="text-rose-500 text-xs mt-1">{errors.title}</p>}
+              {errors.title && <p className="text-brand-red text-sm mt-2 font-medium">{errors.title}</p>}
             </div>
             
             <div>
-              <label className="block text-sm font-medium text-slate-700 mb-1">Description</label>
+              <label className="block text-sm font-semibold text-gray-900 mb-2">Description</label>
               <textarea
-                className={`w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500 transition-colors min-h-[100px] resize-y ${errors.description ? 'border-rose-500 bg-rose-50/50' : 'border-slate-300'}`}
+                className={`w-full px-0 py-3 border-b-2 bg-transparent focus:outline-none focus:ring-0 transition-colors text-lg placeholder-gray-400 min-h-[100px] resize-y ${errors.description ? 'border-brand-red' : 'border-gray-200 focus:border-brand-red'}`}
                 value={formData.description}
                 onChange={(e) => setFormData({ ...formData, description: e.target.value })}
                 placeholder="Add more details..."
               />
-              {errors.description && <p className="text-rose-500 text-xs mt-1">{errors.description}</p>}
+              {errors.description && <p className="text-brand-red text-sm mt-2 font-medium">{errors.description}</p>}
             </div>
             
-            <div className="grid grid-cols-2 gap-4">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
               <div>
-                <label className="block text-sm font-medium text-slate-700 mb-1">Due Date</label>
+                <label className="block text-sm font-semibold text-gray-900 mb-2">Due Date</label>
                 <input
                   type="date"
-                  className={`w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500 transition-colors ${errors.dueDate ? 'border-rose-500 bg-rose-50/50' : 'border-slate-300'}`}
+                  className={`w-full px-0 py-3 border-b-2 bg-transparent focus:outline-none focus:ring-0 transition-colors text-lg text-gray-700 ${errors.dueDate ? 'border-brand-red' : 'border-gray-200 focus:border-brand-red'}`}
                   value={formData.dueDate}
                   onChange={(e) => setFormData({ ...formData, dueDate: e.target.value })}
                 />
-                {errors.dueDate && <p className="text-rose-500 text-xs mt-1">{errors.dueDate}</p>}
+                {errors.dueDate && <p className="text-brand-red text-sm mt-2 font-medium">{errors.dueDate}</p>}
               </div>
               
               <div>
-                <label className="block text-sm font-medium text-slate-700 mb-1">Priority</label>
+                <label className="block text-sm font-semibold text-gray-900 mb-2">Priority</label>
                 <select
-                  className="w-full px-3 py-2 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500 transition-colors bg-white"
+                  className="w-full px-0 py-3 border-b-2 border-gray-200 bg-transparent focus:outline-none focus:ring-0 focus:border-brand-red transition-colors text-lg text-gray-700"
                   value={formData.priority}
                   onChange={(e) => setFormData({ ...formData, priority: e.target.value })}
                 >
@@ -113,9 +113,9 @@ const TaskModal = ({ isOpen, onClose, onSubmit, initialData }) => {
             
             {initialData && (
               <div>
-                <label className="block text-sm font-medium text-slate-700 mb-1">Status</label>
+                <label className="block text-sm font-semibold text-gray-900 mb-2">Status</label>
                 <select
-                  className="w-full px-3 py-2 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500 transition-colors bg-white"
+                  className="w-full px-0 py-3 border-b-2 border-gray-200 bg-transparent focus:outline-none focus:ring-0 focus:border-brand-red transition-colors text-lg text-gray-700"
                   value={formData.status}
                   onChange={(e) => setFormData({ ...formData, status: e.target.value })}
                 >
@@ -127,17 +127,17 @@ const TaskModal = ({ isOpen, onClose, onSubmit, initialData }) => {
             )}
           </div>
           
-          <div className="mt-8 flex justify-end gap-3">
+          <div className="pt-8 flex flex-col md:flex-row justify-end gap-4">
             <button
               type="button"
               onClick={onClose}
-              className="px-4 py-2 text-sm font-medium text-slate-700 bg-white border border-slate-300 rounded-lg hover:bg-slate-50 transition-colors"
+              className="px-8 py-4 text-base font-bold text-gray-900 bg-gray-100 hover:bg-gray-200 transition-colors text-center"
             >
               Cancel
             </button>
             <button
               type="submit"
-              className="px-4 py-2 text-sm font-medium text-white bg-indigo-600 rounded-lg hover:bg-indigo-700 transition-colors shadow-sm"
+              className="px-8 py-4 text-base font-bold text-white bg-brand-red hover:bg-brand-red-hover transition-colors text-center"
             >
               {initialData ? 'Save Changes' : 'Create Task'}
             </button>
